@@ -4,63 +4,77 @@
   <title>Undangan Pernikahan</title>
   <style>
     body {
-      position: relative;
-      width: 250px;
-      height: 100vh;
+      margin: 0;
+      padding: 20px; /* Memberi ruang di pinggir */
+      min-height: 100vh;
       background-color: rgba(232, 230, 224, 1);
-      margin-top: 8%;
-      justify-content: center;
-      align-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Membuat box berada di tengah */
       font-family: cursive;
       background-image: url('doraemon.jpg'); 
-      background-size: cover; /* Improve background image scaling */
-      overflow-x: hidden;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
     }
 
     .box, .box-text {
-      padding: 10px;
-      width: 100%;
-      background-color: lightgrey;
+      padding: 15px;
+      width: 100%; /* Memenuhi lebar kontainer */
+      max-width: 400px; /* Tapi tidak akan lebih lebar dari 400px agar tetap rapi di desktop */
+      background-color: rgba(211, 211, 211, 0.9); /* Sedikit transparan agar estetik */
       border-radius: 20px;
-      margin-bottom: 20px; /* Add spacing between boxes */
-      overflow-x: hidden;
+      margin-bottom: 20px;
+      box-sizing: border-box; /* Memastikan padding tidak merusak lebar */
     }
 
     .box-text {
       height: auto; 
-      font-family: Times New Roman;
+      font-family: 'Times New Roman', Times, serif;
+      line-height: 1.6;
+    }
+
+    input#guestName {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
     }
 
     .undang p {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: bold;
       margin-bottom: 10px; 
     }
 
     .button {
-      font-family: Times New Roman;
-      font-size: 13px;
+      width: 100%; /* Tombol memenuhi lebar box */
+      font-family: 'Times New Roman', serif;
+      font-size: 14px;
+      font-weight: bold;
       color: black;
       background-color: lightblue;
-      padding: 5px 10px;
+      padding: 10px;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
     }
 
     .block {
-      position: absolute; 
-      font-family: Times New Roman;
+      text-align: center;
+      font-family: 'Times New Roman', serif;
       font-weight: bold;
       font-style: italic;
-      overflow-x: hidden;
+      margin-top: 10px;
+      padding-bottom: 20px;
     }
     
-    /* Style for clickable link */
     #link {
       color: blue;
+      word-wrap: break-word; /* Agar link panjang tidak keluar box */
       text-decoration: underline;
-      cursor: pointer;
     }
   </style>
 </head>
