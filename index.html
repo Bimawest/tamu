@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Undangan Pernikahan</title>
+  <style>
+    body {
+      position: relative;
+      width: 250px;
+      height: 100vh;
+      background-color: rgba(232, 230, 224, 1);
+      margin-top: 8%;
+      justify-content: center;
+      align-items: center;
+      font-family: cursive;
+      background-image: url('doraemon.jpg'); 
+      background-size: cover; /* Improve background image scaling */
+      overflow-x: hidden;
+    }
+
+    .box, .box-text {
+      padding: 10px;
+      width: 325px;
+      background-color: lightgrey;
+      border-radius: 20px;
+      margin-bottom: 20px; /* Add spacing between boxes */
+      overflow-x: hidden;
+    }
+
+    .box-text {
+      height: auto; 
+      font-family: Times New Roman;
+    }
+
+    .undang p {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px; 
+    }
+
+    .button {
+      font-family: Times New Roman;
+      font-size: 13px;
+      color: black;
+      background-color: lightblue;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .block {
+      position: absolute; 
+      font-family: Times New Roman;
+      font-weight: bold;
+      font-style: italic;
+      overflow-x: hidden;
+    }
+    
+    /* Style for clickable link */
+    #link {
+      color: blue;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="undang">
+      <p>Masukkan Nama Tamu:</p>
+      <input type="text" id="guestName" placeholder="Masukkan nama Anda">
+      <button class="button" onclick="generateInvitationLink()">Buat Undangan</button> 
+    </div>
+  </div>
+
+  <div class="box-text">
+    <div class="pesan">
+<p>*Assalamualaikum Warahmatullahi Wabarakatuh*
+
+<br>Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Teman/Saudara/i untuk menghadiri acara kami.
+
+<div id="nama"></div>
+
+<br>*Berikut link undangan kami*, untuk info lengkap dari acara bisa kunjungi :</p>
+
+<div id="link"></div> 
+
+<p>Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Teman/Saudara/i berkenan untuk hadir dan memberikan doa restu.
+
+<br>Mohon maaf perihal undangan hanya di bagikan melalui pesan ini.
+
+<br>Terima kasih banyak atas perhatiannya.
+
+<br>*Wassalamualaikum Warahmatullahi Wabarakatuh*
+<br>Bima dan Icha</p>
+<button class="button" onclick="copyText()">Salin Teks</button>
+    </div>
+  </div>
+
+  <div class="block">&copy; 2024 Presented by Bimatech.</div>
+
+  <script>
+   function generateInvitationLink() {
+  const guestName = document.getElementById('guestName').value;
+  const baseUrl = 'https://bimawest.github.io/nikah/index.html'; 
+
+  if (guestName.trim() === "") {
+    alert("Silakan masukkan nama tamu");
+    return;
+  }
+
+  const encodedName = encodeURIComponent(guestName);
+  const fullUrl = `${baseUrl}?to=${encodedName}`;
+
+  const namaElement = document.getElementById('nama');
+  const linkElement = document.getElementById('link');
+
+  namaElement.innerHTML = '<strong>' + guestName + '</strong>';
+  linkElement.textContent = fullUrl;
+  linkElement.setAttribute('href', fullUrl); // Make the link clickable
+  linkElement.setAttribute('target', '_blank'); // Open link in a new tab
+} 
+    
+    function copyText() {
+      const pesanElement = document.querySelector('.pesan');
+      const textToCopy = Array.from(pesanElement.childNodes)
+      .filter(node => node.nodeType === Node.TEXT_NODE || (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'BUTTON'))
+      .map(node => node.textContent)
+      .join('');
+      navigator.clipboard.writeText(textToCopy)
+        .then(() => {
+          alert('Teks berhasil disalin!');
+        })
+        .catch(err => {
+          console.error('Failed to copy: ', err);
+        });
+    }
+    
+  </script>
+</body>
+</html>
